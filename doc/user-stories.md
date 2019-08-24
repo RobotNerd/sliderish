@@ -2,7 +2,13 @@
 
 User stories and subtasks for the media viewer app.
 
-## As a user, I want to display the media view output on my TV.
+## As a user, I want to display the output on a TV.
+
+Status: backlog
+
+> TODO: subtasks
+
+## As a user, I want to be able to view the app on any computer or phone.
 
 Status: backlog
 
@@ -14,7 +20,13 @@ Status: backlog
 
 > TODO: subtasks
 
-## As a user, I want to include a URL to where my media is stored.
+## As a user, I want to give the app a URL to where my media is stored.
+
+Status: backlog
+
+> TODO: subtasks
+
+## As a user, I want to provide multiple URLs/paths to media files.
 
 Status: backlog
 
@@ -32,6 +44,12 @@ Status: backlog
 
 > TODO: subtasks
 
+## As a user, I want to see multiple images/video at once on the screen.
+
+Status: backlog
+
+> TODO: subtasks
+
 ## As a user, I want the option to enable/disable sound for video.
 
 Status: backlog
@@ -44,19 +62,7 @@ Status: backlog
 
 > TODO: subtasks
 
-## As a user, I want to be able to view the app on any computer or phone.
-
-Status: backlog
-
-> TODO: subtasks
-
 ## As a user, I want the option to protect access to the view with a password.
-
-Status: backlog
-
-> TODO: subtasks
-
-## As a user, I want to provide multiple URLs/paths to media files.
 
 Status: backlog
 
@@ -74,12 +80,6 @@ Status: backlog
 
 > TODO: subtasks
 
-## As a user, I want to see multiple images/video at once on the screen.
-
-Status: backlog
-
-> TODO: subtasks
-
 ## As a user, I want to install the app on a Raspberry Pi.
 
 Status: backlog
@@ -87,24 +87,6 @@ Status: backlog
 > TODO: subtasks
 
 ## As a user, I want the app to start automatically when the server starts.
-
-Status: backlog
-
-> TODO: subtasks
-
-## As a user, I want XXXX
-
-Status: backlog
-
-> TODO: subtasks
-
-## As a user, I want XXXX
-
-Status: backlog
-
-> TODO: subtasks
-
-## As a user, I want XXXX
 
 Status: backlog
 
