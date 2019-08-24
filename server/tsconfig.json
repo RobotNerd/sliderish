@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "alwaysStrict": true,
+    "baseUrl": ".",
     "inlineSourceMap": true,
     "inlineSources": true,
     "module": "commonjs",
@@ -23,6 +24,8 @@
     "target": "es6"
   },
   "include": [
-    "*.ts"
+    "*.ts",
+    "src/*.ts",
+    "src/**/*.ts"
   ]
 }
