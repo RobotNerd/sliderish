@@ -14,6 +14,9 @@ Sub-tasks
 
 Status: backlog
 Sub-tasks
+- Add sample images for testing. Include images that are large in dimension
+  and small in file size. Ensure that images are distinct, have clear
+  borders, and have unique features.
 - Create a node.js server to act as an API.
 - Add an API route to retrieve an image.
 - Update the client to retrieve the image from the API using an AJAX call.
@@ -23,9 +26,11 @@ Sub-tasks
 
 Status: backlog
 Sub-tasks
-- Display a zoomed version of the image.
+- Display a zoomed version of an image.
 - Animate the image so that it moves across the screen. Ensure that all
   parts of the visible screen are covered by some part of the image.
+- Create start and end points to the animation and stop animation once the end
+  has been reached.
 
 ## As a user, I want to display the output on a TV.
 
