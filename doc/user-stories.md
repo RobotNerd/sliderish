@@ -4,10 +4,10 @@ User stories and sub-tasks for the media viewer app.
 
 ## As a user, I want to app to cover the entire screen where it is viewed.
 
-Status: backlog
+Status: in progress
 Sub-tasks
 - Create a shell script to start chrome with a URL viewed in full screen mode.
-- Serve a static page with a black background and nothing else.
+- `[DONE]` Serve a static page with a black background and nothing else.
 - Make target browser configurable.
 
 ## As a user, I want to display an image on the app.
