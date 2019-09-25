@@ -127,3 +127,15 @@ Status: backlog
 Status: backlog
 
 > TODO: sub-tasks
+
+## As a user, I want the app to include faces when panning a large image.
+
+Details: When panning across and image that is larger than the screen,
+the animation should pan towards the face of at least one person in the
+picture. This is to avoid the behavior where the animation pans across
+only the torsos of people in a picture but never shows their faces.
+
+Status: backlock
+
+> TODO: sub-tasks
+> - research face-api.js
