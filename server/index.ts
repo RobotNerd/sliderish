@@ -6,7 +6,6 @@ const cors = require('cors');
 
 const PORT = 3030;
 
-//const testImage = 'images/dots-3x4.png';
 const images = [
   'blue-3x4.png',
   'blue-square.png',

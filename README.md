@@ -15,6 +15,7 @@ chromium-browser --start-fullscreen URL
 - Start the server.
 ```
 cd server
+npm run build
 npm run dev-server
 ```
 
