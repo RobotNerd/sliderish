@@ -12,15 +12,16 @@ Sub-tasks
 
 ## As a user, I want to display an image on the app.
 
-Status: backlog
+Status: in progress
 Sub-tasks
-- Add sample images for testing. Include images that are large in dimension
-  and small in file size. Ensure that images are distinct, have clear
-  borders, and have unique features.
+- `[DONE]` Add sample images for testing. Include images that are large in
+  dimension and small in file size. Ensure that images are distinct, have
+  clear borders, and have unique features.
+- `[DONE]` Display an image.
 - Create a node.js server to act as an API.
 - Add an API route to retrieve an image.
 - Update the client to retrieve the image from the API using an AJAX call.
-- Display the image.
+- Display an image received from the server.
 
 ## As a user, I want to display and pan across an image larger than the screen.
 
@@ -135,7 +136,7 @@ the animation should pan towards the face of at least one person in the
 picture. This is to avoid the behavior where the animation pans across
 only the torsos of people in a picture but never shows their faces.
 
-Status: backlock
+Status: backlog
 
 > TODO: sub-tasks
 > - research face-api.js

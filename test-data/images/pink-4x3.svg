@@ -16,7 +16,7 @@
    id="svg8"
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
    sodipodi:docname="pink-4x3.svg"
-   inkscape:export-filename="/home/mib/dev/media-viewer/spec/images/pink-4x3.png"
+   inkscape:export-filename="/home/mib/dev/media-viewer/test-data/images/pink-4x3.png"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96">
   <defs
@@ -29,8 +29,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.35"
-     inkscape:cx="-25.714286"
-     inkscape:cy="633.69821"
+     inkscape:cx="-122.85714"
+     inkscape:cy="622.26964"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
