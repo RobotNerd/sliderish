@@ -21,13 +21,13 @@
 .animation-pan {
   position: relative;
   animation-name: pan;
-  animation-duration: 8s;
+  animation-duration: 2s;
   animation-iteration-count: infinite;
 }
 
 .animation-side-to-side {
   position: relative;
   animation-name: side-to-side;
-  animation-duration: 8s;
+  animation-duration: 2s;
   animation-iteration-count: infinite;
 }

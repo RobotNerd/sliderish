@@ -35,7 +35,11 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          <Image image={this.state.imageUrl} className='fullscreen animation-pan' />
+          <Image
+            image={this.state.imageUrl}
+            className='fullscreen animation-pan'
+            style={{ animationDuration: Loader.getAnimationDuration() }}
+          />
         </header>
       </div>
     );
