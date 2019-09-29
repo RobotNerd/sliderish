@@ -1,9 +1,9 @@
-.alpha {
-  width: 20%;
+.fullscreen {
+  width: 100%;
   height: auto;
 }
 
-.beta {
-  width: 40%;
+.small {
+  width: 10%;
   height: auto;
 }

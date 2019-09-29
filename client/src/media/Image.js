@@ -1,5 +1,6 @@
 import React from 'react';
 import './Image.css';
+import './animation.css';
 
 function Image(props) {
   console.log(props.image);

@@ -1,0 +1,33 @@
+@keyframes pan {
+  from {
+    top: -10px;
+    left: -10px;
+  }
+  to {
+    top: -100px;
+    left: -100px;
+  }
+}
+
+@keyframes side-to-side {
+  from {
+    left: 90%
+  }
+  to {
+    left: -10%;
+  }
+}
+
+.animation-pan {
+  position: relative;
+  animation-name: pan;
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+}
+
+.animation-side-to-side {
+  position: relative;
+  animation-name: side-to-side;
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+}

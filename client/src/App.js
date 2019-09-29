@@ -3,7 +3,6 @@ import './App.css';
 import Image from './media/Image.js';
 import Loader from './media/Loader.js';
 
-const interval = 1500;
 
 class App extends React.Component {
 
@@ -16,7 +15,7 @@ class App extends React.Component {
   componentDidMount() {
     this.interval = setInterval(() => {
       this.loadImage();
-    }, interval);
+    }, Loader.getInterval());
   }
 
   componentWillUnmount() {
@@ -36,7 +35,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          <Image image={this.state.imageUrl} className='alpha' />
+          <Image image={this.state.imageUrl} className='fullscreen animation-pan' />
         </header>
       </div>
     );
