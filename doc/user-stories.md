@@ -8,24 +8,23 @@ Status: in progress
 Sub-tasks
 - Create a shell script to start chrome with a URL viewed in full screen mode.
 - `[DONE]` Serve a static page with a black background and nothing else.
-- Make target browser configurable.
 
 ## As a user, I want to display an image on the app.
 
-Status: in progress
+Status: done
 Sub-tasks
 - `[DONE]` Add sample images for testing. Include images that are large in
   dimension and small in file size. Ensure that images are distinct, have
   clear borders, and have unique features.
 - `[DONE]` Display an image.
-- Create a node.js server to act as an API.
-- Add an API route to retrieve an image.
-- Update the client to retrieve the image from the API using an AJAX call.
-- Display an image received from the server.
+- `[DONE]` Create a node.js server to act as an API.
+- `[DONE]` Add an API route to retrieve an image.
+- `[DONE]` Update the client to retrieve the image from the API using an AJAX call.
+- `[DONE]` Display an image received from the server.
 
 ## As a user, I want to display and pan across an image larger than the screen.
 
-Status: backlog
+Status: in-progress
 Sub-tasks
 - Display a zoomed version of an image.
 - Animate the image so that it moves across the screen. Ensure that all
@@ -99,11 +98,22 @@ Status: backlog
 
 > TODO: sub-tasks
 
+## As a user, I want application configuration stored in a file.
+
+Status: backlog
+
+Sub-tasks
+- Create a config file.
+- Load the config file when the application starts.
+
 ## As a user, I want the background color to be configurable.
 
 Status backlog
 
-> TODO: sub-tasks
+Sub-tasks
+- Make these items configurable:
+  - Background color
+  - Target browser
 
 ## As a user, I want a web-based interface to configure the app.
 
