@@ -1,0 +1,71 @@
+import React from 'react';
+import Image from '../media/Image';
+import Loader from '../media/Loader';
+
+// const name = 'fullscreen';
+const duration = '2000'; // milliseconds
+
+
+/**
+ * Display a fullscreen image for a set amount of time.
+ * Fit the longest edge of the image to the screen and center
+ * it in the other dimension.
+ */
+export default class Fullscreen extends React.Component {
+
+  /**
+   * @param props.config Config loader.
+   * @param props.onAnimationEnd Callback when animation is complete.
+   */
+  constructor(props) {
+    super(props);
+    // TODO load config from server
+    this.state = { imageUrl: '' };
+    this.loadImage();
+  }
+
+  componentDidMount() {
+    this.interval = setInterval(() => {
+      this.loadImage();
+    }, duration);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
+  // /**
+  //  * Scale image to fit the longest edge to the visible screen area.
+  //  * @return Style object.
+  //  */
+  // getStyle() {
+  //   throw new Error('not implemented');
+  // }
+
+  loadImage() {
+    const self = this;
+    Loader.getImageUrl()
+      .then((response) => {
+        self.onImageLoaded(response);
+      });
+  }
+
+  onImageLoaded(response) {
+    this.setState({
+      // TODO fix the server so that it provides the full URL
+      imageUrl: `http://${response.data}`,
+    });
+    setTimeout(() => {
+      this.props.onAnimationEnd();
+    }, duration);
+  }
+
+  render() {
+    return (
+      <Image
+        image={this.state.imageUrl}
+        // style={this.getStyle()}
+      />
+    );
+  }
+}
