@@ -3,7 +3,7 @@ import Image from '../media/Image';
 import Loader from '../media/Loader';
 
 // const name = 'fullscreen';
-const duration = '2000'; // milliseconds
+const duration = '10000'; // milliseconds
 
 
 /**
