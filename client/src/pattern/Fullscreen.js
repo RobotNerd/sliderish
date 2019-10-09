@@ -34,14 +34,6 @@ export default class Fullscreen extends React.Component {
     clearInterval(this.interval);
   }
 
-  // /**
-  //  * Scale image to fit the longest edge to the visible screen area.
-  //  * @return Style object.
-  //  */
-  // getStyle() {
-  //   throw new Error('not implemented');
-  // }
-
   loadImage() {
     const self = this;
     Loader.getImageUrl()
@@ -63,8 +55,8 @@ export default class Fullscreen extends React.Component {
   render() {
     return (
       <Image
+        className="fit-vertical"
         image={this.state.imageUrl}
-        // style={this.getStyle()}
       />
     );
   }

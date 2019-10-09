@@ -1,9 +1,5 @@
-.fullscreen {
-  width: 100%;
-  height: auto;
-}
-
-.small {
-  width: 10%;
-  height: auto;
+.fit-vertical {
+  height: 100vh;
+  width: auto;
+  object-fit: fill;
 }
