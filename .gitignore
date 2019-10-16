@@ -1,4 +1,5 @@
+*.swp
 client/build/
 dist/
 node_modules/
-*.swp
+server/assets/
