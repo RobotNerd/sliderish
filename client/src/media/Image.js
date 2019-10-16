@@ -1,6 +1,8 @@
 import React from 'react';
 import './Image.css';
 import './animation.css';
+import { Image as ImageLoad } from "load-image-react";
+
 
 /**
  * Render and image.
@@ -11,11 +13,13 @@ import './animation.css';
 function Image(props) {
   return (
     <span className="container">
-      <img
-        className={props.className}
+      <ImageLoad
         src={props.image}
-        style={props.style}
-        alt={props.image} />
+        loadOptions={{
+          maxWidth: window.innerWidth,
+          maxHeight: window.innerHeight,
+        }}
+      />
       <span className="image-name">{props.image}</span>
     </span>
   );
