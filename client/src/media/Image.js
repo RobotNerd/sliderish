@@ -10,11 +10,14 @@ import './animation.css';
  */
 function Image(props) {
   return (
-    <img
-      className={props.className}
-      src={props.image}
-      style={props.style}
-      alt={props.image} />
+    <span className="container">
+      <img
+        className={props.className}
+        src={props.image}
+        style={props.style}
+        alt={props.image} />
+      <span className="image-name">{props.image}</span>
+    </span>
   );
 }
 

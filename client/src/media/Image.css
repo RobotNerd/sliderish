@@ -1,5 +1,17 @@
+.container {
+  position: relative;
+  text-align: center;
+}
+
 .fit-vertical {
   height: 100vh;
   width: auto;
   object-fit: fill;
+}
+
+.image-name {
+  background-color: black;
+  position: absolute;
+  bottom: 25px;
+  right: 16px;
 }
