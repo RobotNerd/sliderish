@@ -26,7 +26,7 @@ Sub-tasks
 
 ## As a user, I want to display and pan across an image larger than the screen.
 
-Status: in-progress
+Status: backlog
 
 Sub-tasks
 - Display a zoomed version of an image.
@@ -39,78 +39,67 @@ Sub-tasks
 
 Status: backlog
 
-> TODO:
-Sub-tasks
+> TODO: Sub-tasks
 
 ## As a user, I want to be able to view the app on any computer or phone.
 
 Status: backlog
 
-> TODO:
-Sub-tasks
+> TODO: Sub-tasks
 
 ## As a user, I want to display both images and video.
 
 Status: backlog
 
-> TODO:
-Sub-tasks
+> TODO: Sub-tasks
 
 ## As a user, I want to give the app a URL to where my media is stored.
 
 Status: backlog
 
-> TODO:
-Sub-tasks
+> TODO: Sub-tasks
 
 ## As a user, I want to provide multiple URLs/paths to media files.
 
 Status: backlog
 
-> TODO:
-Sub-tasks
+> TODO: Sub-tasks
 
 ## As a user, I want an option to display the file name/path of displayed media.
 
 Status: backlog
 
-> TODO:
-Sub-tasks
+> TODO: Sub-tasks
 
 ## As a user, I want media to be displayed in multiple randomly chosen layouts.
 
 Status: backlog
 
-> TODO:
-Sub-tasks
+> TODO: Sub-tasks
 
 ## As a user, I want to see multiple images/video at once on the screen.
 
 Status: backlog
 
-> TODO:
-Sub-tasks
+> TODO: Sub-tasks
 
 ## As a user, I want the option to enable/disable sound for video.
 
 Status: backlog
 
-> TODO:
-Sub-tasks
+> TODO: Sub-tasks
 
 ## As a user, I want the option to install the client and server on different machines.
 
 Status: backlog
 
-> TODO:
-Sub-tasks
+> TODO: Sub-tasks
 
 ## As a user, I want the option to protect access to the view with a password.
 
 Status: backlog
 
-> TODO:
-Sub-tasks
+> TODO: Sub-tasks
 
 ## As a user, I want application configuration stored in a file.
 
@@ -135,29 +124,25 @@ Sub-tasks
 
 Status: backlog
 
-> TODO:
-Sub-tasks
+> TODO: Sub-tasks
 
 ## As a user, I want the app to automatically pick up configuration changes.
 
 Status: backlog
 
-> TODO:
-Sub-tasks
+> TODO: Sub-tasks
 
 ## As a user, I want to install the app on a Raspberry Pi.
 
 Status: backlog
 
-> TODO:
-Sub-tasks
+> TODO: Sub-tasks
 
 ## As a user, I want the app to start automatically when the server starts.
 
 Status: backlog
 
-> TODO:
-Sub-tasks
+> TODO: Sub-tasks
 
 ## As a user, I want the app to include faces when panning a large image.
 
@@ -168,6 +153,5 @@ only the torsos of people in a picture but never shows their faces.
 
 Status: backlog
 
-> TODO:
-Sub-tasks
+> TODO: Sub-tasks
 > - research face-api.js
