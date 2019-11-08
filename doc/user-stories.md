@@ -53,6 +53,32 @@ Status: backlog
 
 > TODO: Sub-tasks
 
+## As a user, I want related media to be grouped together when displayed.
+
+Media files are considered to be related based on folder structure. All
+video and image files at the same level in a folder are assumed to be
+part of the same group. This makes it easy for users to organize their
+media in folders however they want to.
+
+Status: backlog
+
+Sub-tasks:
+- Add a set of root paths to the server where all media are stored.
+- Randomize the order of directories that files are served from once at startup,
+  and re-randomize it once media have been served from all directories.
+- When serving media from a directory, create a randomized list of all media
+  paths and serve them in that order. (Only serve a media file once.)
+- Accept requests for multiple media files from the client.
+  - If more files are requested than available, serve a previously served
+    image from the same group again.
+  - If there are fewer files in the entire group than what is requested,
+    serve the same image(s) multiple times as necessary.
+- Provide a configuration option to reload all image paths and reset the
+  order in which media are served.
+- When adding additional root paths via the configuration page, append these
+  paths to the current list of directories being served.
+
+
 ## As a user, I want to give the app a URL to where my media is stored.
 
 Status: backlog
@@ -105,7 +131,6 @@ Status: backlog
 
 Status: backlog
 
-
 Sub-tasks
 - Create a config file.
 - Load the config file when the application starts.
@@ -113,7 +138,6 @@ Sub-tasks
 ## As a user, I want the background color to be configurable.
 
 Status backlog
-
 
 Sub-tasks
 - Make these items configurable:
