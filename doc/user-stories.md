@@ -5,13 +5,15 @@ User stories and sub-tasks for the media viewer app.
 ## As a user, I want to app to cover the entire screen where it is viewed.
 
 Status: in progress
+
 Sub-tasks
 - Create a shell script to start chrome with a URL viewed in full screen mode.
 - `[DONE]` Serve a static page with a black background and nothing else.
 
 ## As a user, I want to display an image on the app.
 
-Status: done
+Status: **DONE**
+
 Sub-tasks
 - `[DONE]` Add sample images for testing. Include images that are large in
   dimension and small in file size. Ensure that images are distinct, have
@@ -25,6 +27,7 @@ Sub-tasks
 ## As a user, I want to display and pan across an image larger than the screen.
 
 Status: in-progress
+
 Sub-tasks
 - Display a zoomed version of an image.
 - Animate the image so that it moves across the screen. Ensure that all
@@ -36,71 +39,83 @@ Sub-tasks
 
 Status: backlog
 
-> TODO: sub-tasks
+> TODO:
+Sub-tasks
 
 ## As a user, I want to be able to view the app on any computer or phone.
 
 Status: backlog
 
-> TODO: sub-tasks
+> TODO:
+Sub-tasks
 
 ## As a user, I want to display both images and video.
 
 Status: backlog
 
-> TODO: sub-tasks
+> TODO:
+Sub-tasks
 
 ## As a user, I want to give the app a URL to where my media is stored.
 
 Status: backlog
 
-> TODO: sub-tasks
+> TODO:
+Sub-tasks
 
 ## As a user, I want to provide multiple URLs/paths to media files.
 
 Status: backlog
 
-> TODO: sub-tasks
+> TODO:
+Sub-tasks
 
 ## As a user, I want an option to display the file name/path of displayed media.
 
 Status: backlog
 
-> TODO: sub-tasks
+> TODO:
+Sub-tasks
 
 ## As a user, I want media to be displayed in multiple randomly chosen layouts.
 
 Status: backlog
 
-> TODO: sub-tasks
+> TODO:
+Sub-tasks
 
 ## As a user, I want to see multiple images/video at once on the screen.
 
 Status: backlog
 
-> TODO: sub-tasks
+> TODO:
+Sub-tasks
 
 ## As a user, I want the option to enable/disable sound for video.
 
 Status: backlog
 
-> TODO: sub-tasks
+> TODO:
+Sub-tasks
 
 ## As a user, I want the option to install the client and server on different machines.
 
 Status: backlog
 
-> TODO: sub-tasks
+> TODO:
+Sub-tasks
 
 ## As a user, I want the option to protect access to the view with a password.
 
 Status: backlog
 
-> TODO: sub-tasks
+> TODO:
+Sub-tasks
 
 ## As a user, I want application configuration stored in a file.
 
 Status: backlog
+
 
 Sub-tasks
 - Create a config file.
@@ -109,6 +124,7 @@ Sub-tasks
 ## As a user, I want the background color to be configurable.
 
 Status backlog
+
 
 Sub-tasks
 - Make these items configurable:
@@ -119,25 +135,29 @@ Sub-tasks
 
 Status: backlog
 
-> TODO: sub-tasks
+> TODO:
+Sub-tasks
 
 ## As a user, I want the app to automatically pick up configuration changes.
 
 Status: backlog
 
-> TODO: sub-tasks
+> TODO:
+Sub-tasks
 
 ## As a user, I want to install the app on a Raspberry Pi.
 
 Status: backlog
 
-> TODO: sub-tasks
+> TODO:
+Sub-tasks
 
 ## As a user, I want the app to start automatically when the server starts.
 
 Status: backlog
 
-> TODO: sub-tasks
+> TODO:
+Sub-tasks
 
 ## As a user, I want the app to include faces when panning a large image.
 
@@ -148,5 +168,6 @@ only the torsos of people in a picture but never shows their faces.
 
 Status: backlog
 
-> TODO: sub-tasks
+> TODO:
+Sub-tasks
 > - research face-api.js
