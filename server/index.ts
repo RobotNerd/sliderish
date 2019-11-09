@@ -1,38 +1,37 @@
 import {Request, Response} from 'express';
 import * as express from 'express';
 import * as cors from 'cors';
-import * as fs from 'fs';
 
 const app = express();
 const PORT = 3030;
-const PATH = `${__dirname}/assets/alaska`;
+const PATHS = [
+  `${__dirname}/assets/alaska`,
+  `${__dirname}/assets/pics`,
+];
 
-// const images = [
-//   'blue-3x4.png',
-//   'blue-square.png',
-//   'dots-3x4.png',
-//   'orange-square.png',
-//   'pink-4x3.png',
-//   'striped-4x3.png',
-// ];
+import { FilePicker } from './src/file-picker';
+import { PathOrder } from './src/path-order';
+const order = new PathOrder(PATHS);
 
-const images: string[] = [];
 
-fs.readdirSync(PATH)
-  .filter((filePath) => {
-    return filePath.substr(-3) === "jpg";
-  })
-  .forEach((filePath) => {
-    // console.log(filePath);
-    images.push(filePath);
-  });
+var shown = 0;
+var basePath = order.getNext();
+var picker = new FilePicker(order.getNext());
+function getImage(): string {
+  if (shown > 10) {
+    shown = 0;
+    basePath = order.getNext();
+    picker = new FilePicker(basePath);
+  }
+  const imagePath = picker.getNext().substring(__dirname.length + '/assets/'.length);
+  return imagePath;
+}
 
 app.use(cors());
 app.use(express.static(__dirname + '/assets'));
 
 app.get('/', function (req: Request, res: Response) {
-  const index = Math.floor(Math.random() * images.length);
-  res.send(`${req.headers.host}/alaska/${images[index]}`);
+  res.send(`${req.headers.host}/${getImage()}`);
 });
 
 app.listen(PORT);

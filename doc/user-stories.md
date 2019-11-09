@@ -60,7 +60,7 @@ video and image files at the same level in a folder are assumed to be
 part of the same group. This makes it easy for users to organize their
 media in folders however they want to.
 
-Status: backlog
+Status: in progress
 
 Sub-tasks:
 - Add a set of root paths to the server where all media are stored.
