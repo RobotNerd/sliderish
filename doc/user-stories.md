@@ -64,9 +64,9 @@ Status: in progress
 
 Sub-tasks:
 - Add a set of root paths to the server where all media are stored.
-- Randomize the order of directories that files are served from once at startup,
+- `[DONE]` Randomize the order of directories that files are served from once at startup,
   and re-randomize it once media have been served from all directories.
-- When serving media from a directory, create a randomized list of all media
+- `[DONE]` When serving media from a directory, create a randomized list of all media
   paths and serve them in that order. (Only serve a media file once.)
 - Accept requests for multiple media files from the client.
   - If more files are requested than available, serve a previously served

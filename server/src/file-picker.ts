@@ -8,9 +8,7 @@ export class FilePicker {
   index: number;
   mediaPaths: string[];
 
-  constructor(
-    path: string
-  ) {
+  constructor(path: string) {
     this.index = 0;
     this.mediaPaths = FilePicker.getMedia(path);
     Util.sortRandom(this.mediaPaths);
@@ -19,11 +17,13 @@ export class FilePicker {
   /** Create random ordered list of paths to media files in the directory. */
   private static getMedia(path: string): string[] {
     const paths: string[] = [];
-    const files: string[] = fs.readdirSync(path);
-    for (let file of files) {
-      for (let ext of extensions) {
-        if (file.includes(ext)) {
-          paths.push(`${path}/${file}`);
+    if (Util.isDirectory(path)) {
+      const files: string[] = fs.readdirSync(path);
+      for (let file of files) {
+        for (let ext of extensions) {
+          if (file.includes(ext)) {
+            paths.push(`${path}/${file}`);
+          }
         }
       }
     }

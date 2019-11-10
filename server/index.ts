@@ -14,15 +14,17 @@ import { PathOrder } from './src/path-order';
 const order = new PathOrder(PATHS);
 
 
+var cycleLimit = 10;
 var shown = 0;
 var basePath = order.getNext();
 var picker = new FilePicker(order.getNext());
 function getImage(): string {
-  if (shown > 10) {
+  if (shown > cycleLimit) {
     shown = 0;
     basePath = order.getNext();
     picker = new FilePicker(basePath);
   }
+  shown++;
   const imagePath = picker.getNext().substring(__dirname.length + '/assets/'.length);
   return imagePath;
 }
