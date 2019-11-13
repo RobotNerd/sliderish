@@ -57,6 +57,7 @@ export default class Fullscreen extends React.Component {
       <Image
         className="fit-vertical"
         image={this.state.imageUrl}
+        nameStyle={this.props.nameStyle}
       />
     );
   }

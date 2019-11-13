@@ -9,6 +9,7 @@ import { Image as ImageLoad } from "load-image-react";
  * @param props.className CSS class name.
  * @param props.image Image URL.
  * @param props.style Optional style overrides.
+ * @param props.nameStyle Class name for displaying image paths.
  */
 function Image(props) {
   return (
@@ -20,7 +21,7 @@ function Image(props) {
           maxHeight: window.innerHeight,
         }}
       />
-      <span className="image-name">{props.image}</span>
+      <span className={props.nameStyle}>{props.image}</span>
     </span>
   );
 }

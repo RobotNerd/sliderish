@@ -57,6 +57,7 @@ export default class PatternManager extends React.Component {
         <Pattern
           onAnimationEnd={this.onAnimationEnd()}
           config={this.props.config}
+          nameStyle={this.props.nameStyle}
         />
       );
     }
