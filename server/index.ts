@@ -33,7 +33,7 @@ app.use(cors());
 app.use(express.static(__dirname + '/assets'));
 
 app.get('/', function (req: Request, res: Response) {
-  res.send(`${req.headers.host}/${getImage()}`);
+  res.send(`http://${req.headers.host}/${getImage()}`);
 });
 
 app.listen(PORT);

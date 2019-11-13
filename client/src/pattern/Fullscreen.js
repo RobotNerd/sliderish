@@ -2,7 +2,6 @@ import React from 'react';
 import Image from '../media/Image';
 import Loader from '../media/Loader';
 
-// const name = 'fullscreen';
 const duration = '10000'; // milliseconds
 
 
@@ -44,8 +43,7 @@ export default class Fullscreen extends React.Component {
 
   onImageLoaded(response) {
     this.setState({
-      // TODO fix the server so that it provides the full URL
-      imageUrl: `http://${response.data}`,
+      imageUrl: response.data,
     });
     setTimeout(() => {
       this.props.onAnimationEnd();
