@@ -30,14 +30,22 @@ export class FilePicker {
     return paths;
   }
 
-  /** Get next media file path. */
-  getNext(): string {
+  /** Get paths to next media files. */
+  getNext(count: number = 1): string[] {
+    const paths: string[] = [];
+    for (let i=0; i < count; i++) {
+      paths.push(this.mediaPaths[this.nextIndex()]);
+    }
+    return paths;
+  }
+
+  private nextIndex(): number {
     if (this.index >= this.mediaPaths.length) {
       this.index = 0;
     }
     else {
       this.index++;
     }
-    return this.mediaPaths[this.index];
+    return this.index;
   }
 }

@@ -43,7 +43,7 @@ export default class Fullscreen extends React.Component {
 
   onImageLoaded(response) {
     this.setState({
-      imageUrl: response.data,
+      imageUrl: response.data[0],
     });
     setTimeout(() => {
       this.props.onAnimationEnd();

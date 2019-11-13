@@ -18,22 +18,28 @@ var cycleLimit = 10;
 var shown = 0;
 var basePath = order.getNext();
 var picker = new FilePicker(order.getNext());
-function getImage(): string {
+function getImage(host: string, count: number = 1): string[] {
   if (shown > cycleLimit) {
     shown = 0;
     basePath = order.getNext();
     picker = new FilePicker(basePath);
   }
-  shown++;
-  const imagePath = picker.getNext().substring(__dirname.length + '/assets/'.length);
-  return imagePath;
+  shown += count;
+  const imagePaths = [];
+  for (let imagePath of picker.getNext(count)) {
+    imagePaths.push(
+      `http://${host}/` +
+      imagePath.substring(__dirname.length + '/assets/'.length)
+    );
+  };
+  return imagePaths;
 }
 
 app.use(cors());
 app.use(express.static(__dirname + '/assets'));
 
 app.get('/', function (req: Request, res: Response) {
-  res.send(`http://${req.headers.host}/${getImage()}`);
+  res.send(getImage(req.headers.host as string, req.query.count));
 });
 
 app.listen(PORT);
