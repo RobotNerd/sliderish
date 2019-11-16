@@ -1,6 +1,7 @@
 import {Request, Response} from 'express';
-import * as express from 'express';
 import * as cors from 'cors';
+import * as express from 'express';
+import * as sanitize from './src/sanitize';
 
 const app = express();
 const PORT = 3030;
@@ -14,7 +15,6 @@ import { PathOrder } from './src/path-order';
 const order = new PathOrder(PATHS);
 
 
-const MAX: number = 20;
 const cycleLimit: number = 10;
 var shown: number = 0;
 var basePath = order.getNext();
@@ -46,13 +46,7 @@ app.use(cors());
 app.use(express.static(__dirname + '/assets'));
 
 app.get('/', function (req: Request, res: Response) {
-  var count: number = req.query.count ? parseInt(req.query.count) : 1;
-  if (count > MAX) {
-    count = MAX;
-  }
-  else if (count <= 0) {
-    count = 1;
-  }
+  const count = sanitize.requestedCount(req);
   res.send(getImage(req.headers.host as string, count));
 });
 
