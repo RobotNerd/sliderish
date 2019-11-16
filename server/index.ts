@@ -14,8 +14,9 @@ import { PathOrder } from './src/path-order';
 const order = new PathOrder(PATHS);
 
 
-var cycleLimit = 10;
-var shown = 0;
+const MAX: number = 20;
+const cycleLimit: number = 10;
+var shown: number = 0;
 var basePath = order.getNext();
 var picker = new FilePicker(order.getNext());
 function getImage(host: string, count: number = 1): string[] {
@@ -27,10 +28,16 @@ function getImage(host: string, count: number = 1): string[] {
   shown += count;
   const imagePaths = [];
   for (let imagePath of picker.getNext(count)) {
-    imagePaths.push(
-      `http://${host}/` +
-      imagePath.substring(__dirname.length + '/assets/'.length)
-    );
+    if (imagePath) {
+      imagePaths.push(
+        `http://${host}/` +
+        imagePath.substring(__dirname.length + '/assets/'.length)
+      );
+    }
+    else {
+      console.log("WARNING: imagePath is undefined or empty string");
+      console.log(imagePaths);
+    }
   };
   return imagePaths;
 }
@@ -39,7 +46,14 @@ app.use(cors());
 app.use(express.static(__dirname + '/assets'));
 
 app.get('/', function (req: Request, res: Response) {
-  res.send(getImage(req.headers.host as string, req.query.count));
+  var count: number = req.query.count ? parseInt(req.query.count) : 1;
+  if (count > MAX) {
+    count = MAX;
+  }
+  else if (count <= 0) {
+    count = 1;
+  }
+  res.send(getImage(req.headers.host as string, count));
 });
 
 app.listen(PORT);
