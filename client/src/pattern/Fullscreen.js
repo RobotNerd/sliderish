@@ -2,7 +2,7 @@ import React from 'react';
 import Image from '../media/Image';
 import Loader from '../media/Loader';
 
-const duration = '10000'; // milliseconds
+const duration = '5000'; // milliseconds
 
 
 /**
