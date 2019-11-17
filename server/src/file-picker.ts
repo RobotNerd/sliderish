@@ -40,11 +40,11 @@ export class FilePicker {
   }
 
   private nextIndex(): number {
-    if (this.index >= this.mediaPaths.length) {
-      this.index = 0;
+    if (this.index < this.mediaPaths.length - 1) {
+      this.index++;
     }
     else {
-      this.index++;
+      this.index = 0;
     }
     return this.index;
   }
