@@ -1,7 +1,7 @@
 import React from 'react';
 import './Image.css';
 import './animation.css';
-import { Image as ImageLoad } from "load-image-react";
+import * as Loader from '../media/Loader';
 
 
 /**
@@ -11,19 +11,34 @@ import { Image as ImageLoad } from "load-image-react";
  * @param props.style Optional style overrides.
  * @param props.nameStyle Class name for displaying image paths.
  */
-function Image(props) {
-  return (
-    <span className="container">
-      <ImageLoad
-        src={props.image}
-        loadOptions={{
-          maxWidth: window.innerWidth,
-          maxHeight: window.innerHeight,
-        }}
-      />
-      <span className={props.nameStyle}>{props.image}</span>
-    </span>
-  );
+class Image extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      imageData: null,
+    };
+    this.reader = new FileReader();
+    this.reader.addEventListener('load', this.onImageLoad);
+  }
+
+  componentDidUpdate (prevProps) {
+    if (this.props.imageUrl !== prevProps.imageUrl) {
+      return Loader.readImageData(this.props.imageUrl)
+        .then((imageData) => {
+          this.setState({ imageData: imageData });
+        });
+    }
+  }
+
+  render() {
+    return (
+      <span className="container">
+        <img src={this.state.imageData} alt={this.props.image} />
+        <span className={this.props.nameStyle}>{this.props.image}</span>
+      </span>
+    );
+  }
 }
 
 export default Image;

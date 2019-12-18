@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from '../media/Image';
-import Loader from '../media/Loader';
+import * as Loader from '../media/Loader';
 
 const duration = '5000'; // milliseconds
 
@@ -35,7 +35,7 @@ export default class Fullscreen extends React.Component {
 
   loadImage() {
     const self = this;
-    Loader.getImageUrl()
+    Loader.getImageUrls()
       .then((response) => {
         self.onImageLoaded(response);
       });
@@ -54,7 +54,7 @@ export default class Fullscreen extends React.Component {
     return (
       <Image
         className="fit-vertical"
-        image={this.state.imageUrl}
+        imageUrl={this.state.imageUrl}
         nameStyle={this.props.nameStyle}
       />
     );
