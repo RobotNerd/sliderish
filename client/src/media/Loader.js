@@ -24,6 +24,7 @@ export async function readImageData(imageUrl) {
         reader.onload = () => {
           resolve(reader.result);
         };
+        // reader.readAsArrayBuffer(response.data);
         reader.readAsDataURL(response.data);
       });
     });
