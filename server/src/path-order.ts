@@ -17,7 +17,10 @@ export class PathOrder {
 
   /** Get path to next folder for serving images. */
   getNext() {
-    (this.index >= this.orderedPaths.length) ? this.reorder() : this.index++;
+    this.index++;
+    if (this.index >= this.orderedPaths.length){
+      this.reorder();
+    }
     return this.orderedPaths[this.index];
   }
 
