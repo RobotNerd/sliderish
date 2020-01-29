@@ -37,22 +37,22 @@ export class ExifParser {
   parseExif() {
     this.setRotation(orientation.normal);
     if (this.view.getUint16(0, false) === 0xFFD8) {
-      var length = this.view.byteLength, offset = 2;
+      let length = this.view.byteLength, offset = 2;
       while (offset < length) {
         if (this.view.getUint16(offset+2, false) <= 8) {
           break;
         }
-        var marker = this.view.getUint16(offset, false);
+        let marker = this.view.getUint16(offset, false);
         offset += 2;
         if (marker === 0xFFE1) {
           if (this.view.getUint32(offset += 2, false) !== 0x45786966) {
             break;
           }
-          var little = this.view.getUint16(offset += 6, false) === 0x4949;
+          let little = this.view.getUint16(offset += 6, false) === 0x4949;
           offset += this.view.getUint32(offset + 4, little);
-          var tags = this.view.getUint16(offset, little);
+          let tags = this.view.getUint16(offset, little);
           offset += 2;
-          for (var i = 0; i < tags; i++) {
+          for (let i = 0; i < tags; i++) {
             if (this.view.getUint16(offset + (i * 12), little) === 0x0112) {
               this.setRotation(this.view.getUint16(offset + (i * 12) + 8, little));
               break;

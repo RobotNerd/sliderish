@@ -26,7 +26,7 @@ class App extends React.Component {
   }
 
   toggleName() {
-    var nameStyle = ["image-name"];
+    let nameStyle = ["image-name"];
     if (this.showName) {
       nameStyle.push("hidden");
     }
