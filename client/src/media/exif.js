@@ -88,6 +88,5 @@ export class ExifParser {
         this.rotation = 0;
         break;
     }
-    console.log('rotation set to:', this.rotation);
   }
 }

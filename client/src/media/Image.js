@@ -44,11 +44,15 @@ export default class Image extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    this.reader.removeEventListener('load', this.onImageLoad);
+  }
+
   render() {
     return (
       <span className = "container">
         <img
-          alt={this.props.image}
+          alt={this.props.imageUrl}
           src={this.state.imageData}
           style={{
             maxHeight: this.state.maxHeight,
@@ -56,7 +60,7 @@ export default class Image extends React.Component {
             transform: `rotate(${this.state.rotation}deg)`,
           }}
         />
-        <span className={this.props.nameStyle}>{this.props.image}</span>
+        <span className={this.props.nameStyle}>{this.props.imageUrl}</span>
       </span>
     );
   }

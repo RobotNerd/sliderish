@@ -37,11 +37,11 @@ export default class Fullscreen extends React.Component {
     const self = this;
     Loader.getImageUrls()
       .then((response) => {
-        self.onImageLoaded(response);
+        self.onImageUrl(response);
       });
   }
 
-  onImageLoaded(response) {
+  onImageUrl(response) {
     this.setState({
       imageUrl: response.data[0],
     });
