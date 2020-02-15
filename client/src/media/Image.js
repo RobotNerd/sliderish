@@ -16,6 +16,7 @@ export default class Image extends React.Component {
 
   constructor(props) {
     super(props);
+    this.rotation = 0;
     this.state = {
       imageData: null,
       maxHeight: props.maxHeight,
@@ -50,13 +51,13 @@ export default class Image extends React.Component {
 
   render() {
     return (
-      <span className = "container">
+      <span className={`container ${this.props.className}`}>
         <img
           alt={this.props.imageUrl}
           src={this.state.imageData}
           style={{
-            maxHeight: this.state.maxHeight,
-            maxWidth: this.state.maxWidth,
+            maxHeight: this.state.rotation ? this.state.maxWidth : this.state.maxHeight,
+            maxWidth: this.state.rotation ? this.state.maxHeight : this.state.maxWidth,
             transform: `rotate(${this.state.rotation}deg)`,
           }}
         />

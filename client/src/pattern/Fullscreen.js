@@ -3,6 +3,8 @@ import Image from '../media/Image';
 import * as Loader from '../media/Loader';
 
 const duration = '5000'; // milliseconds
+const maxMargin = 0.95;  // margin between window border and full screen image
+const swapBufferTimeout = 1000; // milliseconds
 
 
 /**
@@ -13,14 +15,30 @@ const duration = '5000'; // milliseconds
 export default class Fullscreen extends React.Component {
 
   /**
+   * Front/back buffers
+   * Two Image components are rendered following the concept of front and
+   * back buffers. Only one is shown at a time. When a new image is received,
+   * it is rendered using the hidden image buffer. This prevents glitching.
+   *
+   * A timeout is used when switching the visibility of these images.
+   * This is a workaround. Without it, the rotation is applied before the
+   * image is displayed. This appears to be the behavior of the image
+   * element's onload handler.
+   */
+
+  /**
    * @param props.config Config loader.
    * @param props.onAnimationEnd Callback when animation is complete.
    */
   constructor(props) {
     super(props);
     // TODO load config from server
-    this.state = { imageUrl: '' };
+    this.state = {
+      showFront: false,
+      imageUrl: ['', ''],
+    };
     this.loadImage();
+    this.toggleBuffer = this.toggleBuffer.bind(this);
   }
 
   componentDidMount() {
@@ -38,27 +56,52 @@ export default class Fullscreen extends React.Component {
     Loader.getImageUrls()
       .then((response) => {
         self.onImageUrl(response);
+        setTimeout(() => {
+          this.toggleBuffer();
+        }, swapBufferTimeout);
       });
   }
 
   onImageUrl(response) {
+    const urls = this.state.imageUrl;
+    if (this.state.showFront) {
+      urls[1] = response.data[0];
+    }
+    else {
+      urls[0] = response.data[0];
+    }
     this.setState({
-      imageUrl: response.data[0],
+      imageUrl: urls,
     });
     setTimeout(() => {
       this.props.onAnimationEnd();
     }, duration);
   }
 
+  toggleBuffer() {
+    this.setState({
+      showFront: !this.state.showFront,
+    });
+  }
+
   render() {
     return (
-      <Image
-        className="fit-vertical"
-        imageUrl={this.state.imageUrl}
-        nameStyle={this.props.nameStyle}
-        maxHeight={window.innerHeight}
-        maxWidth={window.innerWidth}
-      />
+      <span>
+        <Image
+          className={this.state.showFront ? '' : 'hidden' }
+          imageUrl={this.state.imageUrl[0]}
+          nameStyle={this.props.nameStyle}
+          maxHeight={window.innerHeight * maxMargin}
+          maxWidth={window.innerWidth * maxMargin}
+        />
+        <Image
+          className={this.state.showFront ? 'hidden' : '' }
+          imageUrl={this.state.imageUrl[1]}
+          nameStyle={this.props.nameStyle}
+          maxHeight={window.innerHeight * maxMargin}
+          maxWidth={window.innerWidth * maxMargin}
+        />
+      </span>
     );
   }
 }
