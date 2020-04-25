@@ -5,7 +5,7 @@ const MAX = 20;
 
 /** Sanitize number of requested images. */
 export function requestedCount(req: Request): number {
-  let count: number = req.query.count ? parseInt(req.query.count) : 1;
+  let count: number = req.query.count ? parseInt(req.query.count as string) : 1;
   if (count > MAX) {
     count = MAX;
   }
