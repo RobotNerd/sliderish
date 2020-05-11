@@ -10,4 +10,4 @@ REST API server for the media viewer.
 
 ## Development
 
-- Run dev server: `npm run dev-server`
+- Run dev server: `yarn dev-server`
