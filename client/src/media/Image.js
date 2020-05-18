@@ -17,8 +17,10 @@ export default class Image extends React.Component {
 
   constructor(props) {
     super(props);
+    this.className = `container animation-fade-in`;
     this.rotation = 0;
     this.state = {
+      className: 'hidden',
       imageData: null,
       maxHeight: props.maxHeight,
       maxWidth: props.maxWidth,
@@ -29,6 +31,7 @@ export default class Image extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.imageUrl !== prevProps.imageUrl) {
+      this.setState({ className: 'hidden' });
       this.loadRemoteImage();
     }
   }
@@ -42,6 +45,7 @@ export default class Image extends React.Component {
       })
       .then((parser) => {
         const state = {
+          className: this.className,
           imageData: dataUrl,
           rotation: parser.rotation,
         };
@@ -51,7 +55,7 @@ export default class Image extends React.Component {
 
   render() {
     return (
-      <span className={`container animation-fade-in ${this.props.className}`}>
+      <span className={`${this.state.className} ${this.props.className}`}>
         <img
           alt=""
           src={this.state.imageData}
