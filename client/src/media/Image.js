@@ -51,7 +51,7 @@ export default class Image extends React.Component {
 
   render() {
     return (
-      <span className={`container ${this.props.className}`}>
+      <span className={`container animation-fade-in ${this.props.className}`}>
         <img
           alt={this.props.imageUrl}
           src={this.state.imageData}
