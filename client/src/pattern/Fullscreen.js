@@ -4,7 +4,7 @@ import * as Loader from '../media/Loader';
 
 const duration = '5000'; // milliseconds
 const maxMargin = 0.95;  // margin between window border and full screen image
-const swapBufferTimeout = 1000; // milliseconds
+const swapBufferTimeout = 1200; // milliseconds
 
 
 /**
@@ -90,16 +90,16 @@ export default class Fullscreen extends React.Component {
         <Image
           className={this.state.showFront ? '' : 'hidden' }
           imageUrl={this.state.imageUrl[0]}
-          nameStyle={this.props.nameStyle}
           maxHeight={window.innerHeight * maxMargin}
           maxWidth={window.innerWidth * maxMargin}
+          nameStyle={this.props.nameStyle}
         />
         <Image
           className={this.state.showFront ? 'hidden' : '' }
           imageUrl={this.state.imageUrl[1]}
-          nameStyle={this.props.nameStyle}
           maxHeight={window.innerHeight * maxMargin}
           maxWidth={window.innerWidth * maxMargin}
+          nameStyle={this.props.nameStyle}
         />
       </span>
     );

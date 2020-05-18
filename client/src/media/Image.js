@@ -8,9 +8,10 @@ import * as Loader from '../media/Loader';
 /**
  * Render and image.
  * @param props.className CSS class name.
- * @param props.image Image URL.
+ * @param props.imageUrl Image URL.
+ * @param props.maxHeight Maximum allowed height of the image.
+ * @param props.maxWidth Maximum allowed width of the image.
  * @param props.style Optional style overrides.
- * @param props.nameStyle Class name for displaying image paths.
  */
 export default class Image extends React.Component {
 
@@ -23,37 +24,36 @@ export default class Image extends React.Component {
       maxWidth: props.maxWidth,
       rotation: 0,
     };
-    this.reader = new FileReader();
-    this.reader.addEventListener('load', this.onImageLoad);
+    this.loadRemoteImage();
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.imageUrl !== prevProps.imageUrl) {
-      let dataUrl = null;
-      return Loader.readImageData(this.props.imageUrl)
-        .then((imageData) => {
-          dataUrl = imageData;
-          return ExifParser.createParserFromDataUrl(dataUrl);
-        })
-        .then((parser) => {
-          const state = {
-            imageData: dataUrl,
-            rotation: parser.rotation,
-          };
-          this.setState(state);
-        });
+      this.loadRemoteImage();
     }
   }
 
-  componentWillUnmount() {
-    this.reader.removeEventListener('load', this.onImageLoad);
+  loadRemoteImage() {
+    let dataUrl = null;
+    return Loader.readImageData(this.props.imageUrl)
+      .then((imageData) => {
+        dataUrl = imageData;
+        return ExifParser.createParserFromDataUrl(dataUrl);
+      })
+      .then((parser) => {
+        const state = {
+          imageData: dataUrl,
+          rotation: parser.rotation,
+        };
+        this.setState(state);
+      });
   }
 
   render() {
     return (
       <span className={`container animation-fade-in ${this.props.className}`}>
         <img
-          alt={this.props.imageUrl}
+          alt=""
           src={this.state.imageData}
           style={{
             maxHeight: this.state.rotation ? this.state.maxWidth : this.state.maxHeight,
