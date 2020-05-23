@@ -35,6 +35,6 @@
 .animation-side-to-side {
   position: relative;
   animation-name: side-to-side;
-  animation-duration: 2s;
+  animation-duration: 50s;
   animation-iteration-count: infinite;
 }

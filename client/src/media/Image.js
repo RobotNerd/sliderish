@@ -12,6 +12,7 @@ import * as Loader from '../media/Loader';
  * @param props.maxHeight Maximum allowed height of the image.
  * @param props.maxWidth Maximum allowed width of the image.
  * @param props.style Optional style overrides.
+ * @param props.zIndex CSS z-index of the image.
  */
 export default class Image extends React.Component {
 
@@ -63,6 +64,7 @@ export default class Image extends React.Component {
             maxHeight: this.state.rotation ? this.state.maxWidth : this.state.maxHeight,
             maxWidth: this.state.rotation ? this.state.maxHeight : this.state.maxWidth,
             transform: `rotate(${this.state.rotation}deg)`,
+            zIndex: this.props.zIndex,
           }}
         />
         <span className={this.props.nameStyle}>{this.props.imageUrl}</span>
