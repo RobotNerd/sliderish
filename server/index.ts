@@ -7,8 +7,7 @@ import * as sanitize from './src/sanitize';
 const app = express();
 const PORT = 3030;
 const PATHS = [
-  `${__dirname}/assets/alaska`,
-  `${__dirname}/assets/pics`,
+  `${__dirname}/assets/images`,
 ];
 const imagePicker = new ImagePicker(PATHS, __dirname + '/assets/');
 

@@ -2,6 +2,16 @@
 
 > TODO
 
+## Add images
+
+To serve images, add symlinks to the paths where the images are stored.
+Create the symlinks in the folder `assets/images/`.
+
+```
+cd media-viewer/server/assets/images/
+ln -s /path/to/images ./
+```
+
 ## Start automatically
 
 > TODO
