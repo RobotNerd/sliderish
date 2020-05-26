@@ -2,8 +2,8 @@ import React from 'react';
 import Image from '../media/Image';
 import * as Loader from '../media/Loader';
 
-const duration = '20000'; // milliseconds
-const imageCount = 10;
+const duration = '60000'; // milliseconds
+const imageCount = 5;
 
 
 /**
@@ -57,17 +57,35 @@ export default class Carnival extends React.Component {
         {
           this.state.imageUrls.map ((url, index) =>
             <Image
+              animationDelay={this.animationDelay(index)}
               className="animation-side-to-side"
               imageUrl={url}
               key={url}
               maxHeight={100 + index * 50}
               maxWidth={100 + index * 50}
               nameStyle={this.props.nameStyle}
-              zIndex={index}
+              top={this.verticalPosition(index)}
+              zIndex={index + 1}
             />
           )
         }
       </span>
     );
+  }
+
+  /**
+   * @param {int} index Position of image in the array of all displayed images.
+   * @return {int} CSS animation-delay value.
+   */
+  animationDelay(index) {
+    return Math.floor((-Math.random())*duration) + 'ms';
+  }
+
+  /**
+   * @param {int} index Position of image in the array of all displayed images.
+   * @return {int} CSS top value for the image.
+   */
+  verticalPosition(index) {
+    return Math.random() * (window.innerHeight * 0.75);
   }
 }

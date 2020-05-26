@@ -15,8 +15,8 @@
 }
 
 @keyframes side-to-side {
-  from { left: 90% }
-  to { left: -10% }
+  from { left: 100% }
+  to { left: -20% }
 }
 
 .animation-fade-in {
@@ -33,8 +33,9 @@
 }
 
 .animation-side-to-side {
-  position: relative;
+  position: absolute;
   animation-name: side-to-side;
-  animation-duration: 50s;
+  animation-duration: 20s;
   animation-iteration-count: infinite;
+  animation-timing-function: linear;
 }

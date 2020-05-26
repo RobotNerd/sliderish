@@ -7,11 +7,13 @@ import * as Loader from '../media/Loader';
 
 /**
  * Render and image.
+ * @param props.animationDelay Delay for starting css animation.
  * @param props.className CSS class name.
  * @param props.imageUrl Image URL.
  * @param props.maxHeight Maximum allowed height of the image.
  * @param props.maxWidth Maximum allowed width of the image.
  * @param props.style Optional style overrides.
+ * @param props.top Top position of image.
  * @param props.zIndex CSS z-index of the image.
  */
 export default class Image extends React.Component {
@@ -56,7 +58,14 @@ export default class Image extends React.Component {
 
   render() {
     return (
-      <span className={`${this.state.className} ${this.props.className}`}>
+      <span
+        className={`${this.state.className} ${this.props.className}`}
+        style={{
+          animationDelay: this.props.animationDelay,
+          animationDuration: ((this.props.zIndex + 1) * 20) + 's',
+          top: this.props.top,
+        }}
+      >
         <img
           alt=""
           src={this.state.imageData}
