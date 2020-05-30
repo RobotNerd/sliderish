@@ -35,7 +35,6 @@
 .animation-side-to-side {
   position: absolute;
   animation-name: side-to-side;
-  animation-duration: 20s;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
 }

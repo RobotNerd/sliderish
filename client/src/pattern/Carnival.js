@@ -3,7 +3,7 @@ import Image from '../media/Image';
 import * as Loader from '../media/Loader';
 
 const duration = '60000'; // milliseconds
-const imageCount = 5;
+const imageCount = 9;
 
 
 /**
@@ -22,6 +22,22 @@ export default class Carnival extends React.Component {
     // TODO load config from server
     this.state = { imageUrls: [] };
     this.loadImages();
+  }
+
+  /**
+   * Animation delay for the image at index.
+   * Used to spread images out on the screen.
+   * @param {int} index Position of image in the array of all displayed images.
+   * @return {int} CSS animation-delay value.
+   */
+  animationDelay(index) {
+    if (index >= 6) {
+      return '0s';
+    }
+    else if (index >= 3) {
+      return '10s';
+    }
+    return '18s';
   }
 
   componentDidMount() {
@@ -58,14 +74,14 @@ export default class Carnival extends React.Component {
           this.state.imageUrls.map ((url, index) =>
             <Image
               animationDelay={this.animationDelay(index)}
+              animationDuration={ index % 3 === 1 ? '30s' : '23s'}
               className="animation-side-to-side"
               imageUrl={url}
               key={url}
-              maxHeight={100 + index * 50}
-              maxWidth={100 + index * 50}
+              maxHeight={index % 3 === 1 ? 100 : 150}
               nameStyle={this.props.nameStyle}
               top={this.verticalPosition(index)}
-              zIndex={index + 1}
+              zIndex={index % 3 === 1 ? 0 : 1}
             />
           )
         }
@@ -75,17 +91,17 @@ export default class Carnival extends React.Component {
 
   /**
    * @param {int} index Position of image in the array of all displayed images.
-   * @return {int} CSS animation-delay value.
-   */
-  animationDelay(index) {
-    return Math.floor((-Math.random())*duration) + 'ms';
-  }
-
-  /**
-   * @param {int} index Position of image in the array of all displayed images.
    * @return {int} CSS top value for the image.
    */
   verticalPosition(index) {
-    return Math.random() * (window.innerHeight * 0.75);
+    switch (index % 3) {
+      case 0:
+        return window.innerHeight * 0.05;
+      case 1:
+        return window.innerHeight * 0.40;
+      case 2:
+      default:
+        return window.innerHeight * 0.70;
+    }
   }
 }

@@ -8,6 +8,7 @@ import * as Loader from '../media/Loader';
 /**
  * Render and image.
  * @param props.animationDelay Delay for starting css animation.
+ * @param props.animationDuration Speed of animation.
  * @param props.className CSS class name.
  * @param props.imageUrl Image URL.
  * @param props.maxHeight Maximum allowed height of the image.
@@ -62,7 +63,7 @@ export default class Image extends React.Component {
         className={`${this.state.className} ${this.props.className}`}
         style={{
           animationDelay: this.props.animationDelay,
-          animationDuration: ((this.props.zIndex + 1) * 20) + 's',
+          animationDuration: this.props.animationDuration,
           top: this.props.top,
         }}
       >
