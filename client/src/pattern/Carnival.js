@@ -1,9 +1,10 @@
 import React from 'react';
-import Image from '../media/Image';
+import { ImageData, ImageDisplay } from '../media/Image';
 import * as Loader from '../media/Loader';
 
 const duration = '60000'; // milliseconds
 const imageCount = 9;
+const speed = 30;
 
 
 /**
@@ -20,7 +21,7 @@ export default class Carnival extends React.Component {
   constructor(props) {
     super(props);
     // TODO load config from server
-    this.state = { imageUrls: [] };
+    this.state = { images: [] };
     this.loadImages();
   }
 
@@ -31,13 +32,14 @@ export default class Carnival extends React.Component {
    * @return {int} CSS animation-delay value.
    */
   animationDelay(index) {
+    const step = Math.floor(speed / 3);
     if (index >= 6) {
       return '0s';
     }
     else if (index >= 3) {
-      return '10s';
+      return `${-step}s`;
     }
-    return '18s';
+    return `${-step*2}s`;
   }
 
   componentDidMount() {
@@ -52,33 +54,39 @@ export default class Carnival extends React.Component {
 
   loadImages() {
     const self = this;
+    const images = [];
+    const requests = [];
     Loader.getImageUrls(imageCount)
       .then((response) => {
-        self.onImagesLoaded(response);
+        response.data.forEach((url) => {
+          const image = new ImageData(url);
+          images.push(image);
+          requests.push(image.load());
+        });
+        return Promise.all(requests);
+      })
+      .then(() => {
+        self.setState({ images: images });
+        setTimeout(() => {
+          self.props.onAnimationEnd();
+        }, duration);
       });
-  }
-
-  onImagesLoaded(response) {
-    this.setState({
-      imageUrls: response.data,
-    });
-    setTimeout(() => {
-      this.props.onAnimationEnd();
-    }, duration);
   }
 
   render() {
     return (
       <span>
         {
-          this.state.imageUrls.map ((url, index) =>
-            <Image
+          this.state.images.map((imageData, index) =>
+            <ImageDisplay
               animationDelay={this.animationDelay(index)}
-              animationDuration={ index % 3 === 1 ? '30s' : '23s'}
+              // animationDuration={index % 3 === 1 ? `${slow}s` : `${fast}s` }
+              animationDuration={`${speed}s`}
               className="animation-side-to-side"
-              imageUrl={url}
-              key={url}
+              imageData={imageData}
+              key={imageData.url}
               maxHeight={index % 3 === 1 ? 100 : 150}
+              maxWidth={Math.floor(window.width / 4)}
               nameStyle={this.props.nameStyle}
               top={this.verticalPosition(index)}
               zIndex={index % 3 === 1 ? 0 : 1}

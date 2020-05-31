@@ -6,78 +6,83 @@ import * as Loader from '../media/Loader';
 
 
 /**
+ * Load and store image data from remote server.
+ * This data is used by ImageRender class to display the image.
+ */
+export class ImageData {
+  
+  /**
+   * @param {string} url Image to load.
+   */
+  constructor(url) {
+    this.imageData = null;
+    this.rotation = 0;
+    this.url = url;
+  }
+
+  /**
+   * Load image from server and determine rotation based on metadata.
+   */
+  async load() {
+    return Loader.readImageData(this.url)
+      .then((data) => {
+        this.imageData = data;
+        return ExifParser.createParserFromDataUrl(this.imageData);
+      })
+      .then((parser) => {
+        this.rotation = parser.rotation;
+      });
+  }
+}
+
+
+/**
  * Render and image.
  * @param props.animationDelay Delay for starting css animation.
  * @param props.animationDuration Speed of animation.
  * @param props.className CSS class name.
- * @param props.imageUrl Image URL.
+ * @param props.imageData Instance of the ImageData class.
  * @param props.maxHeight Maximum allowed height of the image.
  * @param props.maxWidth Maximum allowed width of the image.
  * @param props.style Optional style overrides.
  * @param props.top Top position of image.
  * @param props.zIndex CSS z-index of the image.
  */
-export default class Image extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.className = `container animation-fade-in`;
-    this.rotation = 0;
-    this.state = {
-      className: 'hidden',
-      imageData: null,
-      maxHeight: props.maxHeight,
-      maxWidth: props.maxWidth,
-      rotation: 0,
-    };
-    this.loadRemoteImage();
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.imageUrl !== prevProps.imageUrl) {
-      this.setState({ className: 'hidden' });
-      this.loadRemoteImage();
-    }
-  }
-
-  loadRemoteImage() {
-    let dataUrl = null;
-    return Loader.readImageData(this.props.imageUrl)
-      .then((imageData) => {
-        dataUrl = imageData;
-        return ExifParser.createParserFromDataUrl(dataUrl);
-      })
-      .then((parser) => {
-        const state = {
-          className: this.className,
-          imageData: dataUrl,
-          rotation: parser.rotation,
-        };
-        this.setState(state);
-      });
-  }
+export class ImageDisplay extends React.Component {
 
   render() {
+    const { rotation, imageData, imageUrl } = this.props.imageData;
+    const {
+      animationDelay,
+      animationDuration,
+      className,
+      maxWidth,
+      maxHeight,
+      nameStyle,
+      top,
+      zIndex
+    } = this.props;
     return (
       <span
-        className={`${this.state.className} ${this.props.className}`}
+        className={className}
         style={{
-          animationDelay: this.props.animationDelay,
-          animationDuration: this.props.animationDuration,
-          top: this.props.top,
+          animationDelay: animationDelay,
+          animationDuration: animationDuration,
+          top: top,
         }}
       >
         <img
           alt=""
-          src={this.state.imageData}
+          src={imageData}
+          className={'animation-fade-in'}
           style={{
-            maxHeight: this.state.rotation ? this.state.maxWidth : this.state.maxHeight,
-            maxWidth: this.state.rotation ? this.state.maxHeight : this.state.maxWidth,
-            transform: `rotate(${this.state.rotation}deg)`,
-            zIndex: this.props.zIndex,
+            maxHeight: rotation ? maxWidth : maxHeight,
+            maxWidth: rotation ? maxHeight : maxWidth,
+            transform: `rotate(${rotation}deg)`,
+            zIndex: zIndex,
           }}
         />
-        <span className={this.props.nameStyle}>{this.props.imageUrl}</span>
+        <span className={nameStyle}>{imageUrl}</span>
       </span>
     );
   }
