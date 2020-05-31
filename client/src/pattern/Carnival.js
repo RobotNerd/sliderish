@@ -4,7 +4,8 @@ import * as Loader from '../media/Loader';
 
 const duration = '60000'; // milliseconds
 const imageCount = 9;
-const speed = 30;
+const fast = 30;
+const slow = 35;
 
 
 /**
@@ -32,6 +33,7 @@ export default class Carnival extends React.Component {
    * @return {int} CSS animation-delay value.
    */
   animationDelay(index) {
+    const speed = index % 3 === 1 ? slow : fast;
     const step = Math.floor(speed / 3);
     const offset = Math.floor((-0.5 + Math.random()) * 2);
     if (index >= 6) {
@@ -81,8 +83,8 @@ export default class Carnival extends React.Component {
           this.state.images.map((imageData, index) =>
             <ImageDisplay
               animationDelay={this.animationDelay(index)}
-              // animationDuration={index % 3 === 1 ? `${slow}s` : `${fast}s` }
-              animationDuration={`${speed}s`}
+              animationDuration={index % 3 === 1 ? `${slow}s` : `${fast}s` }
+              // animationDuration={`${speed}s`}
               className="animation-side-to-side"
               imageData={imageData}
               key={imageData.url}
