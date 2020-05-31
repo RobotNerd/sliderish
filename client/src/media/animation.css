@@ -16,7 +16,7 @@
 
 @keyframes side-to-side {
   from { left: 100% }
-  to { left: -20% }
+  to { left: -30% }
 }
 
 .animation-fade-in {

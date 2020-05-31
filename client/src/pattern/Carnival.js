@@ -33,13 +33,14 @@ export default class Carnival extends React.Component {
    */
   animationDelay(index) {
     const step = Math.floor(speed / 3);
+    const offset = Math.floor((-0.5 + Math.random()) * 2);
     if (index >= 6) {
-      return '0s';
+      return `${offset}s`;
     }
     else if (index >= 3) {
-      return `${-step}s`;
+      return `${-step + offset}s`;
     }
-    return `${-step*2}s`;
+    return `${-step*2 + offset}s`;
   }
 
   componentDidMount() {
@@ -85,8 +86,8 @@ export default class Carnival extends React.Component {
               className="animation-side-to-side"
               imageData={imageData}
               key={imageData.url}
-              maxHeight={index % 3 === 1 ? 100 : 150}
-              maxWidth={Math.floor(window.innerWidth / 4)}
+              maxHeight={this.imageHeight(index)}
+              maxWidth={this.imageWidth()}
               nameStyle={this.props.nameStyle}
               top={this.verticalPosition(index)}
               zIndex={index % 3 === 1 ? 0 : 1}
@@ -97,19 +98,30 @@ export default class Carnival extends React.Component {
     );
   }
 
+  imageHeight(index) {
+    const big = Math.floor(window.innerHeight / 5);
+    const small = Math.floor(window.innerHeight / 12);
+    return (1 + Math.random()) * (index % 3 === 1 ? small : big);
+  }
+
+  imageWidth() {
+    return Math.floor(window.innerWidth / 4);
+  }
+
   /**
    * @param {int} index Position of image in the array of all displayed images.
    * @return {int} CSS top value for the image.
    */
   verticalPosition(index) {
+    const offset = (Math.random() - 0.5) * (window.innerHeight * 0.08);
     switch (index % 3) {
       case 0:
-        return window.innerHeight * 0.05;
+        return window.innerHeight * 0.05 + offset;
       case 1:
-        return window.innerHeight * 0.40;
+        return window.innerHeight * 0.50 + offset;
       case 2:
       default:
-        return window.innerHeight * 0.70;
+        return window.innerHeight * 0.70 + offset;
     }
   }
 }
