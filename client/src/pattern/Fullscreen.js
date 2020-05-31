@@ -1,8 +1,8 @@
 import React from 'react';
-import Image from '../media/Image';
+import { ImageData, ImageDisplay } from '../media/Image';
 import * as Loader from '../media/Loader';
 
-const duration = '5000'; // milliseconds
+const duration = '10000'; // milliseconds
 const maxMargin = 0.95;  // margin between window border and full screen image
 const swapBufferTimeout = 1200; // milliseconds
 
@@ -35,7 +35,7 @@ export default class Fullscreen extends React.Component {
     // TODO load config from server
     this.state = {
       showFront: false,
-      imageUrl: ['', ''],
+      imageData: [null, null],
     };
     this.loadImage();
     this.toggleBuffer = this.toggleBuffer.bind(this);
@@ -63,19 +63,22 @@ export default class Fullscreen extends React.Component {
   }
 
   onImageUrl(response) {
-    const urls = this.state.imageUrl;
+    const images = this.state.imageData;
+    const image = new ImageData(response.data[0]);
     if (this.state.showFront) {
-      urls[1] = response.data[0];
+      images[1] = image;
     }
     else {
-      urls[0] = response.data[0];
+      images[0] = image;
     }
-    this.setState({
-      imageUrl: urls,
+    image.load().then(() => {
+      this.setState({
+        imageData: images,
+      });
+      setTimeout(() => {
+        this.props.onAnimationEnd();
+      }, duration);
     });
-    setTimeout(() => {
-      this.props.onAnimationEnd();
-    }, duration);
   }
 
   toggleBuffer() {
@@ -85,22 +88,28 @@ export default class Fullscreen extends React.Component {
   }
 
   render() {
+    const { imageData, showFront } = this.state;
+    const { nameStyle } = this.props;
     return (
       <span>
-        <Image
-          className={this.state.showFront ? '' : 'hidden' }
-          imageUrl={this.state.imageUrl[0]}
-          maxHeight={window.innerHeight * maxMargin}
-          maxWidth={window.innerWidth * maxMargin}
-          nameStyle={this.props.nameStyle}
-        />
-        <Image
-          className={this.state.showFront ? 'hidden' : '' }
-          imageUrl={this.state.imageUrl[1]}
-          maxHeight={window.innerHeight * maxMargin}
-          maxWidth={window.innerWidth * maxMargin}
-          nameStyle={this.props.nameStyle}
-        />
+        {imageData[0] &&
+          <ImageDisplay
+            className={showFront ? '' : 'hidden' }
+            imageData={imageData[0]}
+            maxHeight={window.innerHeight * maxMargin}
+            maxWidth={window.innerWidth * maxMargin}
+            nameStyle={nameStyle}
+          />
+        }
+        {imageData[1] &&
+          <ImageDisplay
+            className={showFront ? 'hidden' : '' }
+            imageData={imageData[1]}
+            maxHeight={window.innerHeight * maxMargin}
+            maxWidth={window.innerWidth * maxMargin}
+            nameStyle={nameStyle}
+          />
+        }
       </span>
     );
   }

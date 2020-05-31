@@ -1,10 +1,10 @@
 import React from 'react';
-import Carnival from './Carnival';
-// import Fullscreen from './Fullscreen';
+// import Carnival from './Carnival';
+import Fullscreen from './Fullscreen';
 
 const patterns = [
-  Carnival,
-  // Fullscreen,
+  // Carnival,
+  Fullscreen,
 ];
 
 

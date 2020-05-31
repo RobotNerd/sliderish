@@ -84,7 +84,6 @@ export default class Carnival extends React.Component {
             <ImageDisplay
               animationDelay={this.animationDelay(index)}
               animationDuration={index % 3 === 1 ? `${slow}s` : `${fast}s` }
-              // animationDuration={`${speed}s`}
               className="animation-side-to-side"
               imageData={imageData}
               key={imageData.url}
