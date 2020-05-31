@@ -86,7 +86,7 @@ export default class Carnival extends React.Component {
               imageData={imageData}
               key={imageData.url}
               maxHeight={index % 3 === 1 ? 100 : 150}
-              maxWidth={Math.floor(window.width / 4)}
+              maxWidth={Math.floor(window.innerWidth / 4)}
               nameStyle={this.props.nameStyle}
               top={this.verticalPosition(index)}
               zIndex={index % 3 === 1 ? 0 : 1}
