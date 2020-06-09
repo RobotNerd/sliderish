@@ -21,7 +21,7 @@ export class FilePicker {
       const files: string[] = fs.readdirSync(path);
       for (let file of files) {
         for (let ext of extensions) {
-          if (file.includes(ext)) {
+          if (file.toLowerCase().includes(ext)) {
             paths.push(`${path}/${file}`);
           }
         }
