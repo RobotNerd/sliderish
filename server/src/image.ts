@@ -1,5 +1,6 @@
 import { FilePicker } from './file-picker';
 import { PathOrder } from './path-order';
+import * as exif from './exif';
 
 const CYCLE_LIMIT = 10;
 
@@ -25,6 +26,8 @@ export class ImagePicker {
     const imagePaths = [];
     for (let imagePath of this.filePicker.getNext(count)) {
       if (imagePath) {
+        const metadata = exif.parseExif(imagePath);
+        console.log(`${metadata.rotation}: ${imagePath}`);
         imagePaths.push(
           `http://${host}/` +
           imagePath.substring(this.prefixPath.length)
@@ -34,7 +37,6 @@ export class ImagePicker {
         console.log("WARNING: imagePath is undefined or empty string");
       }
     };
-    console.log(imagePaths);
     return imagePaths;
   }
 
