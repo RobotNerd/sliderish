@@ -32,9 +32,9 @@ export class ImagePicker {
       }
       else {
         console.log("WARNING: imagePath is undefined or empty string");
-        console.log(imagePaths);
       }
     };
+    console.log(imagePaths);
     return imagePaths;
   }
 
