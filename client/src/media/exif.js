@@ -15,7 +15,12 @@ export class ExifParser {
     this.view = null;
     this.rotation = 0;  // Rotation angle to use in degrees.
     this.view = new DataView(imageBlob);
-    this.parseExif();
+    try {
+      this.parseExif();
+    }
+    catch (err) {
+      console.log('Failed to parse exif: ' + err);
+    }
   }
 
   /**
