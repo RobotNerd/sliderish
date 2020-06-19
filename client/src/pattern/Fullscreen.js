@@ -1,5 +1,5 @@
 import React from 'react';
-import { ImageData, ImageDisplay } from '../media/Image';
+import { Image } from '../media/Image';
 import * as Loader from '../media/Loader';
 
 const duration = '10000'; // milliseconds
@@ -53,7 +53,7 @@ export default class Fullscreen extends React.Component {
 
   loadImage() {
     const self = this;
-    Loader.getImageUrls()
+    Loader.getImageData()
       .then((response) => {
         self.onImageUrl(response);
         setTimeout(() => {
@@ -64,21 +64,18 @@ export default class Fullscreen extends React.Component {
 
   onImageUrl(response) {
     const images = this.state.imageData;
-    const image = new ImageData(response.data[0]);
     if (this.state.showFront) {
-      images[1] = image;
+      images[1] = response.data[0];
     }
     else {
-      images[0] = image;
+      images[0] = response.data[0];
     }
-    image.load().then(() => {
-      this.setState({
-        imageData: images,
-      });
-      setTimeout(() => {
-        this.props.onAnimationEnd();
-      }, duration);
+    this.setState({
+      imageData: images,
     });
+    setTimeout(() => {
+      this.props.onAnimationEnd();
+    }, duration);
   }
 
   toggleBuffer() {
@@ -93,7 +90,7 @@ export default class Fullscreen extends React.Component {
     return (
       <span>
         {imageData[0] &&
-          <ImageDisplay
+          <Image
             className={showFront ? '' : 'hidden' }
             imageData={imageData[0]}
             maxHeight={window.innerHeight * maxMargin}
@@ -102,7 +99,7 @@ export default class Fullscreen extends React.Component {
           />
         }
         {imageData[1] &&
-          <ImageDisplay
+          <Image
             className={showFront ? 'hidden' : '' }
             imageData={imageData[1]}
             maxHeight={window.innerHeight * maxMargin}

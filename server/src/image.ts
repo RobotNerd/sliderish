@@ -5,6 +5,12 @@ import * as exif from './exif';
 const CYCLE_LIMIT = 10;
 
 
+export interface Image {
+  metadata: exif.Metadata;
+  url: string;
+}
+
+
 export class ImagePicker {
 
   filePicker!: FilePicker;
@@ -18,20 +24,21 @@ export class ImagePicker {
   }
 
   /** Get images to be served to client. */
-  getImages(host: string, count: number = 1): string[] {
+  getImages(host: string, count: number = 1): Image[] {
     if (this.shown > CYCLE_LIMIT) {
       this.changeSource();
     }
     this.shown += count;
-    const imagePaths = [];
+    const imagePaths: Image[] = [];
     for (let imagePath of this.filePicker.getNext(count)) {
       if (imagePath) {
         const metadata = exif.parseExif(imagePath);
         console.log(`${metadata.rotation}: ${imagePath}`);
-        imagePaths.push(
-          `http://${host}/` +
-          imagePath.substring(this.prefixPath.length)
-        );
+        imagePaths.push({
+          metadata,
+          url: `http://${host}/` +
+               imagePath.substring(this.prefixPath.length)
+        });
       }
       else {
         console.log("WARNING: imagePath is undefined or empty string");
