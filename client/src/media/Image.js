@@ -44,6 +44,7 @@ export class ImageData {
  * @param props.imageData Instance of the ImageData class.
  * @param props.maxHeight Maximum allowed height of the image.
  * @param props.maxWidth Maximum allowed width of the image.
+ * @param props.nameStyle Style used for displaying image names.
  * @param props.style Optional style overrides.
  * @param props.top Top position of image.
  * @param props.zIndex CSS z-index of the image.
@@ -51,7 +52,7 @@ export class ImageData {
 export class ImageDisplay extends React.Component {
 
   render() {
-    const { rotation, imageData, imageUrl } = this.props.imageData;
+    const { rotation, imageData, url: imageUrl } = this.props.imageData;
     const {
       animationDelay,
       animationDuration,
