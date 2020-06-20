@@ -3,9 +3,7 @@ import { Image } from '../media/Image';
 import * as Loader from '../media/Loader';
 
 const duration = '60000'; // milliseconds
-const imageCount = 9;
-const fast = 30;
-const slow = 35;
+const imageCount = 3;
 
 
 /**
@@ -32,16 +30,16 @@ export default class Carnival extends React.Component {
    * @return {int} CSS animation-delay value.
    */
   animationDelay(index) {
-    const speed = index % 3 === 1 ? slow : fast;
-    const step = Math.floor(speed / 3);
     const offset = Math.floor((-0.5 + Math.random()) * 2);
-    if (index >= 6) {
-      return `${offset}s`;
+    switch(index) {
+      case 0:
+        return `${offset}s`;
+      case 1:
+        return `${offset - 10}s`;
+      case 2:
+      default:
+        return `${offset - 20}s`;
     }
-    else if (index >= 3) {
-      return `${-step + offset}s`;
-    }
-    return `${-step*2 + offset}s`;
   }
 
   componentDidMount() {
@@ -80,7 +78,7 @@ export default class Carnival extends React.Component {
           this.state.images.map((imageData, index) =>
             <Image
               animationDelay={this.animationDelay(index)}
-              animationDuration={index % 3 === 1 ? `${slow}s` : `${fast}s` }
+              animationDuration="30s"
               className="animation-side-to-side"
               imageData={imageData}
               key={imageData.url}
@@ -88,7 +86,6 @@ export default class Carnival extends React.Component {
               maxWidth={this.imageWidth()}
               nameStyle={this.props.nameStyle}
               top={this.verticalPosition(index)}
-              zIndex={index % 3 === 1 ? 0 : 1}
             />
           )
         }
@@ -97,8 +94,8 @@ export default class Carnival extends React.Component {
   }
 
   imageHeight(index) {
-    const big = Math.floor(window.innerHeight / 5);
-    const small = Math.floor(window.innerHeight / 12);
+    const big = Math.floor(window.innerHeight);
+    const small = Math.floor(window.innerHeight / 3);
     return (1 + Math.random()) * (index % 3 === 1 ? small : big);
   }
 
@@ -111,15 +108,14 @@ export default class Carnival extends React.Component {
    * @return {int} CSS top value for the image.
    */
   verticalPosition(index) {
-    const offset = (Math.random() - 0.5) * (window.innerHeight * 0.08);
     switch (index % 3) {
       case 0:
-        return window.innerHeight * 0.05 + offset;
+        return window.innerHeight * 0.05;
       case 1:
-        return window.innerHeight * 0.50 + offset;
+        return window.innerHeight * 0.3;
       case 2:
       default:
-        return window.innerHeight * 0.70 + offset;
+        return window.innerHeight * 0.45;
     }
   }
 }
