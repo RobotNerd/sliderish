@@ -4,7 +4,7 @@ import * as Loader from '../media/Loader';
 
 const duration = '10000'; // milliseconds
 const maxMargin = 0.95;  // margin between window border and full screen image
-const maxCount = 3;
+const maxCount = 5;
 const swapBufferTimeout = 1200; // milliseconds
 
 
