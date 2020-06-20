@@ -2,8 +2,6 @@ import { FilePicker } from './file-picker';
 import { PathOrder } from './path-order';
 import * as exif from './exif';
 
-const CYCLE_LIMIT = 10;
-
 
 export interface Image {
   metadata: exif.Metadata;
@@ -25,9 +23,6 @@ export class ImagePicker {
 
   /** Get images to be served to client. */
   getImages(host: string, count: number = 1): Image[] {
-    if (this.shown > CYCLE_LIMIT) {
-      this.changeSource();
-    }
     this.shown += count;
     const imagePaths: Image[] = [];
     for (let imagePath of this.filePicker.getNext(count)) {
@@ -44,6 +39,7 @@ export class ImagePicker {
         console.log("WARNING: imagePath is undefined or empty string");
       }
     };
+    this.changeSource();
     return imagePaths;
   }
 
