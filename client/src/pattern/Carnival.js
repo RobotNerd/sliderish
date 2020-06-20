@@ -23,7 +23,6 @@ export default class Carnival extends React.Component {
     super(props);
     // TODO load config from server
     this.state = { images: [] };
-    this.loadImages();
   }
 
   /**
@@ -46,9 +45,13 @@ export default class Carnival extends React.Component {
   }
 
   componentDidMount() {
-    this.interval = setInterval(() => {
+    this.loadImages();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.refCount !== prevProps.refCount) {
       this.loadImages();
-    }, duration);
+    }
   }
 
   componentWillUnmount() {
