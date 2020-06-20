@@ -1,5 +1,5 @@
 import React from 'react';
-import { ImageData, ImageDisplay } from '../media/Image';
+import { Image } from '../media/Image';
 import * as Loader from '../media/Loader';
 
 const duration = '60000'; // milliseconds
@@ -58,17 +58,11 @@ export default class Carnival extends React.Component {
   loadImages() {
     const self = this;
     const images = [];
-    const requests = [];
-    Loader.getImageUrls(imageCount)
+    Loader.getImageData(imageCount)
       .then((response) => {
-        response.data.forEach((url) => {
-          const image = new ImageData(url);
-          images.push(image);
-          requests.push(image.load());
+        response.data.forEach((imageData) => {
+          images.push(imageData);
         });
-        return Promise.all(requests);
-      })
-      .then(() => {
         self.setState({ images: images });
         setTimeout(() => {
           self.props.onAnimationEnd();
@@ -81,7 +75,7 @@ export default class Carnival extends React.Component {
       <span>
         {
           this.state.images.map((imageData, index) =>
-            <ImageDisplay
+            <Image
               animationDelay={this.animationDelay(index)}
               animationDuration={index % 3 === 1 ? `${slow}s` : `${fast}s` }
               className="animation-side-to-side"
