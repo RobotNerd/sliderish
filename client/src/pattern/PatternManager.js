@@ -58,6 +58,7 @@ export default class PatternManager extends React.Component {
           onAnimationEnd={this.onAnimationEnd()}
           config={this.props.config}
           nameStyle={this.props.nameStyle}
+          refCount={this.state.refCount}
         />
       );
     }

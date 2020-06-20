@@ -4,7 +4,18 @@ import * as Loader from '../media/Loader';
 
 const duration = '10000'; // milliseconds
 const maxMargin = 0.95;  // margin between window border and full screen image
+const maxCount = 3;
 const swapBufferTimeout = 1200; // milliseconds
+
+
+/**
+ * Get the number of images to display before switching patterns.
+ * Pick a number between 1 and maxCount.
+ * @return Image count.
+ */
+function imageCount() {
+  return Math.floor(Math.random() * maxCount) + 1;
+}
 
 
 /**
@@ -29,52 +40,68 @@ export default class Fullscreen extends React.Component {
   /**
    * @param props.config Config loader.
    * @param props.onAnimationEnd Callback when animation is complete.
+   * @param props.refCount Unique value for checking component updates.
    */
   constructor(props) {
     super(props);
     // TODO load config from server
     this.state = {
       showFront: false,
-      imageData: [null, null],
+      imageBuffers: [null, null],
     };
-    this.loadImage();
     this.toggleBuffer = this.toggleBuffer.bind(this);
+    this.nextImage = this.nextImage.bind(this);
   }
 
   componentDidMount() {
-    this.interval = setInterval(() => {
-      this.loadImage();
-    }, duration);
+    this.loadImages();
   }
 
-  componentWillUnmount() {
-    clearInterval(this.interval);
+  componentDidUpdate(prevProps) {
+    if (this.props.refCount !== prevProps.refCount) {
+      this.loadImages();
+    }
   }
 
-  loadImage() {
-    const self = this;
-    Loader.getImageData()
+  loadImages() {
+    this.currentImage = 0;
+    this.imageList = [];
+    const tmp = imageCount();
+    Loader.getImageData(tmp)
       .then((response) => {
-        self.onImageUrl(response);
-        setTimeout(() => {
-          this.toggleBuffer();
-        }, swapBufferTimeout);
+        response.data.forEach((imageData) => {
+          this.imageList.push(imageData);
+        });
+        this.nextImage();
       });
   }
 
-  onImageUrl(response) {
-    const images = this.state.imageData;
-    if (this.state.showFront) {
-      images[1] = response.data[0];
+  nextImage() {
+    if (this.currentImage >= this.imageList.length) {
+      this.props.onAnimationEnd();
     }
     else {
-      images[0] = response.data[0];
+      this.onImageUrl(this.imageList[this.currentImage]);
+      this.currentImage++;
+    }
+  }
+
+  onImageUrl(response) {
+    const imageBuffers = this.state.imageBuffers;
+    if (this.state.showFront) {
+      imageBuffers[1] = response;
+    }
+    else {
+      imageBuffers[0] = response;
     }
     this.setState({
-      imageData: images,
+      imageBuffers: imageBuffers,
     });
     setTimeout(() => {
-      this.props.onAnimationEnd();
+      this.toggleBuffer();
+    }, swapBufferTimeout);
+    setTimeout(() => {
+      this.nextImage();
     }, duration);
   }
 
@@ -85,23 +112,23 @@ export default class Fullscreen extends React.Component {
   }
 
   render() {
-    const { imageData, showFront } = this.state;
+    const { imageBuffers, showFront } = this.state;
     const { nameStyle } = this.props;
     return (
       <span>
-        {imageData[0] &&
+        {imageBuffers[0] &&
           <Image
             className={showFront ? '' : 'hidden' }
-            imageData={imageData[0]}
+            imageData={imageBuffers[0]}
             maxHeight={window.innerHeight * maxMargin}
             maxWidth={window.innerWidth * maxMargin}
             nameStyle={nameStyle}
           />
         }
-        {imageData[1] &&
+        {imageBuffers[1] &&
           <Image
             className={showFront ? 'hidden' : '' }
-            imageData={imageData[1]}
+            imageData={imageBuffers[1]}
             maxHeight={window.innerHeight * maxMargin}
             maxWidth={window.innerWidth * maxMargin}
             nameStyle={nameStyle}
