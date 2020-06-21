@@ -20,7 +20,6 @@ export class Image extends React.Component {
 
   render() {
     const { url } = this.props.imageData;
-    const { rotation } = this.props.imageData.metadata;
     const {
       animationDelay,
       animationDuration,
@@ -45,9 +44,8 @@ export class Image extends React.Component {
           src={url}
           className={'animation-fade-in'}
           style={{
-            maxHeight: rotation ? maxWidth : maxHeight,
-            maxWidth: rotation ? maxHeight : maxWidth,
-            transform: `rotate(${rotation}deg)`,
+            maxHeight,
+            maxWidth,
             zIndex: zIndex,
           }}
         />
